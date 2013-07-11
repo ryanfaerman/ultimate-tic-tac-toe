@@ -188,6 +188,15 @@
 		7571C7BD178E3BD4009F6569 /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7571C7BC178E3BD4009F6569 /* IntroLayer.mm */; };
 		7571C7C0178E3BD4009F6569 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7571C7BF178E3BD4009F6569 /* GLES-Render.mm */; };
 		7571C7C2178E3BD4009F6569 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7C1178E3BD4009F6569 /* blocks.png */; };
+		7571C7C9178E4468009F6569 /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7C8178E4468009F6569 /* seeker.png */; };
+		7571C7CE178E454E009F6569 /* 11-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7CA178E454E009F6569 /* 11-x.png */; };
+		7571C7CF178E454E009F6569 /* 11-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7CB178E454E009F6569 /* 11-x@2x.png */; };
+		7571C7D0178E454E009F6569 /* 12-o.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7CC178E454E009F6569 /* 12-o.png */; };
+		7571C7D1178E454E009F6569 /* 12-o@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7CD178E454E009F6569 /* 12-o@2x.png */; };
+		7571C7D4178E4B2C009F6569 /* retina_wood_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D2178E4B2B009F6569 /* retina_wood_@2X.png */; };
+		7571C7D5178E4B2C009F6569 /* retina_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D3178E4B2B009F6569 /* retina_wood.png */; };
+		7571C7D8178E505B009F6569 /* Fuelship_Syphus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */; };
+		7571C7DA178E5493009F6569 /* thud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D9178E5493009F6569 /* thud.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -569,6 +578,15 @@
 		7571C7BE178E3BD4009F6569 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		7571C7BF178E3BD4009F6569 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		7571C7C1178E3BD4009F6569 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		7571C7C8178E4468009F6569 /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeker.png; sourceTree = "<group>"; };
+		7571C7CA178E454E009F6569 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
+		7571C7CB178E454E009F6569 /* 11-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x@2x.png"; sourceTree = "<group>"; };
+		7571C7CC178E454E009F6569 /* 12-o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-o.png"; sourceTree = "<group>"; };
+		7571C7CD178E454E009F6569 /* 12-o@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-o@2x.png"; sourceTree = "<group>"; };
+		7571C7D2178E4B2B009F6569 /* retina_wood_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retina_wood_@2X.png"; sourceTree = "<group>"; };
+		7571C7D3178E4B2B009F6569 /* retina_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina_wood.png; sourceTree = "<group>"; };
+		7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fuelship_Syphus.mp3; sourceTree = "<group>"; };
+		7571C7D9178E5493009F6569 /* thud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thud.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -647,6 +665,15 @@
 		7571C592178E3BD0009F6569 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7571C7D9178E5493009F6569 /* thud.mp3 */,
+				7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */,
+				7571C7D2178E4B2B009F6569 /* retina_wood_@2X.png */,
+				7571C7D3178E4B2B009F6569 /* retina_wood.png */,
+				7571C7CA178E454E009F6569 /* 11-x.png */,
+				7571C7CB178E454E009F6569 /* 11-x@2x.png */,
+				7571C7CC178E454E009F6569 /* 12-o.png */,
+				7571C7CD178E454E009F6569 /* 12-o@2x.png */,
+				7571C7C8178E4468009F6569 /* seeker.png */,
 				7571C593178E3BD0009F6569 /* Default.png */,
 				7571C595178E3BD0009F6569 /* Default@2x.png */,
 				7571C597178E3BD0009F6569 /* Default-568h@2x.png */,
@@ -1248,6 +1275,15 @@
 				7571C5A9178E3BD0009F6569 /* iTunesArtwork in Resources */,
 				7571C702178E3BD2009F6569 /* ChangeLog in Resources */,
 				7571C7C2178E3BD4009F6569 /* blocks.png in Resources */,
+				7571C7C9178E4468009F6569 /* seeker.png in Resources */,
+				7571C7CE178E454E009F6569 /* 11-x.png in Resources */,
+				7571C7CF178E454E009F6569 /* 11-x@2x.png in Resources */,
+				7571C7D0178E454E009F6569 /* 12-o.png in Resources */,
+				7571C7D1178E454E009F6569 /* 12-o@2x.png in Resources */,
+				7571C7D4178E4B2C009F6569 /* retina_wood_@2X.png in Resources */,
+				7571C7D5178E4B2C009F6569 /* retina_wood.png in Resources */,
+				7571C7D8178E505B009F6569 /* Fuelship_Syphus.mp3 in Resources */,
+				7571C7DA178E5493009F6569 /* thud.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
