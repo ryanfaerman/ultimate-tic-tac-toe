@@ -197,6 +197,10 @@
 		7571C7D5178E4B2C009F6569 /* retina_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D3178E4B2B009F6569 /* retina_wood.png */; };
 		7571C7D8178E505B009F6569 /* Fuelship_Syphus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */; };
 		7571C7DA178E5493009F6569 /* thud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7D9178E5493009F6569 /* thud.mp3 */; };
+		7571C7DD178E5553009F6569 /* 32-circle-o.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7DB178E5552009F6569 /* 32-circle-o.png */; };
+		7571C7DE178E5553009F6569 /* 32-circle-o@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7DC178E5552009F6569 /* 32-circle-o@2x.png */; };
+		7571C7E0178E596E009F6569 /* thid.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7DF178E596E009F6569 /* thid.mp3 */; };
+		7571C7E5178E6CBD009F6569 /* garble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7571C7E4178E6CBD009F6569 /* garble.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -587,6 +591,13 @@
 		7571C7D3178E4B2B009F6569 /* retina_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina_wood.png; sourceTree = "<group>"; };
 		7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fuelship_Syphus.mp3; sourceTree = "<group>"; };
 		7571C7D9178E5493009F6569 /* thud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thud.mp3; sourceTree = "<group>"; };
+		7571C7DB178E5552009F6569 /* 32-circle-o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-circle-o.png"; sourceTree = "<group>"; };
+		7571C7DC178E5552009F6569 /* 32-circle-o@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-circle-o@2x.png"; sourceTree = "<group>"; };
+		7571C7DF178E596E009F6569 /* thid.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thid.mp3; sourceTree = "<group>"; };
+		7571C7E1178E6951009F6569 /* MyContactListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyContactListener.h; sourceTree = "<group>"; };
+		7571C7E2178E6952009F6569 /* MyContactListener.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MyContactListener.mm; sourceTree = "<group>"; };
+		7571C7E3178E698B009F6569 /* hahaha.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hahaha.caf; sourceTree = "<group>"; };
+		7571C7E4178E6CBD009F6569 /* garble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = garble.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -647,6 +658,8 @@
 		7571C591178E3BD0009F6569 /* ultimate tic tac to */ = {
 			isa = PBXGroup;
 			children = (
+				7571C7E1178E6951009F6569 /* MyContactListener.h */,
+				7571C7E2178E6952009F6569 /* MyContactListener.mm */,
 				7571C7B5178E3BD4009F6569 /* AppDelegate.h */,
 				7571C7B6178E3BD4009F6569 /* AppDelegate.mm */,
 				7571C7B8178E3BD4009F6569 /* HelloWorldLayer.h */,
@@ -665,6 +678,11 @@
 		7571C592178E3BD0009F6569 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7571C7E3178E698B009F6569 /* hahaha.caf */,
+				7571C7E4178E6CBD009F6569 /* garble.mp3 */,
+				7571C7DF178E596E009F6569 /* thid.mp3 */,
+				7571C7DB178E5552009F6569 /* 32-circle-o.png */,
+				7571C7DC178E5552009F6569 /* 32-circle-o@2x.png */,
 				7571C7D9178E5493009F6569 /* thud.mp3 */,
 				7571C7D7178E505A009F6569 /* Fuelship_Syphus.mp3 */,
 				7571C7D2178E4B2B009F6569 /* retina_wood_@2X.png */,
@@ -1284,6 +1302,10 @@
 				7571C7D5178E4B2C009F6569 /* retina_wood.png in Resources */,
 				7571C7D8178E505B009F6569 /* Fuelship_Syphus.mp3 in Resources */,
 				7571C7DA178E5493009F6569 /* thud.mp3 in Resources */,
+				7571C7DD178E5553009F6569 /* 32-circle-o.png in Resources */,
+				7571C7DE178E5553009F6569 /* 32-circle-o@2x.png in Resources */,
+				7571C7E0178E596E009F6569 /* thid.mp3 in Resources */,
+				7571C7E5178E6CBD009F6569 /* garble.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

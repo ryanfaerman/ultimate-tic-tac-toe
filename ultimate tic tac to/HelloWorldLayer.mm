@@ -25,13 +25,12 @@ enum {
 
 CCSprite *player_x;
 CCSprite *player_o;
+CCSprite *double_o;
 
 #pragma mark - HelloWorldLayer
 
 @interface HelloWorldLayer()
--(void) initPhysics;
--(void) addNewSpriteAtPosition:(CGPoint)p;
--(void) createMenu;
+
 @end
 
 @implementation HelloWorldLayer
@@ -56,6 +55,16 @@ CCSprite *player_o;
 	if( (self=[super init])) {
 		
 		// enable events
+    
+    b2Vec2 gravity = b2Vec2(0.0f, 0.0f);
+    _world = new b2World(gravity);
+    
+    m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+    _world->SetDebugDraw(m_debugDraw);
+    
+    uint32 flags = 0;
+    flags += b2Draw::e_shapeBit;
+    m_debugDraw->SetFlags(flags);
 		
 		self.touchEnabled = YES;
 		self.accelerometerEnabled = YES;
@@ -74,10 +83,16 @@ CCSprite *player_o;
 		player_x = [CCSprite spriteWithFile:@"11-x@2x.png"];
     player_x.position = ccp(50, 100);
     [self addChild:player_x];
+    [self addBoxBodyForSprite:player_x];
     
     player_o = [CCSprite spriteWithFile:@"12-o@2x.png"];
     player_o.position = ccp(200, 300);
     [self addChild:player_o];
+    
+    double_o = [CCSprite spriteWithFile:@"32-circle-o@2x.png"];
+    double_o.position = ccp(200, 400);
+    [self addChild:double_o];
+    [self addBoxBodyForSprite:double_o];
     
     [self schedule:@selector(nextFrame:)];
 		
@@ -91,17 +106,82 @@ CCSprite *player_o;
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Fuelship_Syphus.mp3"];
     [CDAudioManager sharedManager].backgroundMusic.volume = 0.3f;
 		
+    [self schedule:@selector(tick:)];
 		[self scheduleUpdate];
 	}
 	return self;
 }
 
+- (void)addBoxBodyForSprite:(CCSprite *)sprite {
+  
+  b2BodyDef spriteBodyDef;
+  spriteBodyDef.type = b2_dynamicBody;
+  spriteBodyDef.position.Set(sprite.position.x/PTM_RATIO,
+                             sprite.position.y/PTM_RATIO);
+  spriteBodyDef.userData = sprite;
+  b2Body *spriteBody = _world->CreateBody(&spriteBodyDef);
+  
+  b2PolygonShape spriteShape;
+  spriteShape.SetAsBox(sprite.contentSize.width/PTM_RATIO/2,
+                       sprite.contentSize.height/PTM_RATIO/2);
+  b2FixtureDef spriteShapeDef;
+  spriteShapeDef.shape = &spriteShape;
+  spriteShapeDef.density = 10.0;
+  spriteShapeDef.isSensor = false;
+  spriteBody->CreateFixture(&spriteShapeDef);
+  
+}
+
+-(void) draw
+{
+	//
+	// IMPORTANT:
+	// This is only for debug purposes
+	// It is recommend to disable it
+	//
+	[super draw];
+	
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+	
+	kmGLPushMatrix();
+	
+	_world->DrawDebugData();
+	
+	kmGLPopMatrix();
+}
+
+- (void)tick:(ccTime)dt {
+  
+  _world->Step(dt, 10, 10);
+  for(b2Body *b = _world->GetBodyList(); b; b=b->GetNext()) {
+    if (b->GetUserData() != NULL) {
+      CCSprite *sprite = (CCSprite *)b->GetUserData();
+      
+      b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
+                                 sprite.position.y/PTM_RATIO);
+      float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
+      
+      b->SetTransform(b2Position, b2Angle);
+    }
+  }
+  
+}
+
 -(void) nextFrame:(ccTime)dt
 {
   player_o.position = ccp(player_o.position.x + 100*dt, player_o.position.y);
+  
+  CGRect movingRect = [player_o boundingBox];
+  CGRect player = [player_x boundingBox];
+  if(CGRectIntersectsRect(movingRect, player)) {
+    NSLog(@"ha ha Collision detected");
+    [[SimpleAudioEngine sharedEngine] playEffect:@"garble.mp3"];
+  }
+  
   if (player_o.position.x > [[CCDirector sharedDirector] winSize].width + 32) {
     player_o.position = ccp(-32, player_o.position.y);
   }
+  
 }
 
 -(void) registerWithTouchDispatcher
@@ -118,13 +198,30 @@ CCSprite *player_o;
 	CGPoint location = [self convertTouchToNodeSpace: touch];
   
 	[player_x stopAllActions];
-	[player_x runAction: [CCMoveTo actionWithDuration:0.2f position:location]];
+  id move = [CCMoveTo actionWithDuration:0.2f position:location];
+  id wrapperAction = [CCCallFunc actionWithTarget:self selector:@selector(actionComplete)];
+	[player_x runAction: [CCSequence actions:move, wrapperAction, nil]];
+  
+}
+
+-(void) actionComplete
+{
+  
+  CGRect targetRect = [double_o boundingBox];
+  CGRect player = [player_x boundingBox];
+  if(CGRectIntersectsRect(targetRect, player)) {
+    NSLog(@"ha ha Collision detected");
+    [[SimpleAudioEngine sharedEngine] playEffect:@"garble.mp3"];
+  } else  {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"thid.mp3"];
+  }
+  
 }
 
 -(void) dealloc
 {
-	delete world;
-	world = NULL;
+	delete _world;
+	_world = NULL;
 	
 	delete m_debugDraw;
 	m_debugDraw = NULL;
