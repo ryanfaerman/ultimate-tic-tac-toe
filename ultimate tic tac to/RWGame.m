@@ -19,6 +19,11 @@
 
 - (BOOL) playPosition:(int)position onBoard:(int)b withPlayer:(Class)player;
 {
+  // Has to play the correct board
+  if (nextBoard && nextBoard != b) {
+    return NO;
+  }
+  
   NSMutableArray *boards = [super board];
   RWBoard *subBoard = [boards objectAtIndex:b];
   
