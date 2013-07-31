@@ -17,7 +17,11 @@
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
+#import "RWBoard.h"
+#import "RWPlayerX.h"
+#import "RWPlayerO.h"
 
+#import "RWGame.h"
 
 enum {
 	kTagParentNode = 1,
@@ -112,7 +116,28 @@ int spaces_left = 81;
     x_source.position = ccp(70, 450);
     [self addChild:x_source];
     
+    RWBoard *board = [[RWBoard alloc] init];
+    NSLog(@"WELCOME TO THE BOARD:%@", board);
+    [board playPosition:0 withPlayer:[RWPlayerX class]];
+    [board playPosition:1 withPlayer:[RWPlayerX class]];
+    [board playPosition:2 withPlayer:[RWPlayerX class]];
+    NSLog(@"And the Winner is: %@", [board winner]);
     
+    RWGame *theGame = [[RWGame alloc] init];
+    NSLog(@"WELCOME TO THE GAME:%@", theGame);
+    [theGame playPosition:0 onBoard:0 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:0 onBoard:1 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:0 onBoard:2 withPlayer:[RWPlayerX class]];
+    
+    [theGame playPosition:1 onBoard:0 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:1 onBoard:1 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:1 onBoard:2 withPlayer:[RWPlayerX class]];
+    
+    [theGame playPosition:2 onBoard:0 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:2 onBoard:1 withPlayer:[RWPlayerX class]];
+    [theGame playPosition:2 onBoard:2 withPlayer:[RWPlayerX class]];
+    
+    NSLog(@"And the Winner is: %@", [theGame winner]);
     
 		
 		
