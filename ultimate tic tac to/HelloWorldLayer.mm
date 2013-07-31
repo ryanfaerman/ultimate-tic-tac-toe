@@ -296,6 +296,8 @@ int spaces_left = 81;
   NSString *H = [masterGameBoard objectAtIndex:7];
   NSString *I = [masterGameBoard objectAtIndex:8];
   
+  NSLog(@"\n %@ %@ %@ \n %@ %@ %@ \n %@ %@ %@ \n", A, B, C, D, E, F, G, H, I);
+  
   NSString *R1 = [self winnerForTriplet:A b:B c:C];
   NSString *R2 = [self winnerForTriplet:D b:E c:F];
   NSString *R3 = [self winnerForTriplet:G b:H c:I];
@@ -346,7 +348,7 @@ int spaces_left = 81;
   NSString *H = [boardMap objectAtIndex:h];
   NSString *I = [boardMap objectAtIndex:i];
   
-//  NSLog(@"\n %@ %@ %@ \n %@ %@ %@ \n %@ %@ %@ \n", A, B, C, D, E, F, G, H, I);
+  NSLog(@"\n %@ %@ %@ \n %@ %@ %@ \n %@ %@ %@ \n", A, B, C, D, E, F, G, H, I);
   
   NSString *R1 = [self winnerForTriplet:A b:B c:C];
   NSString *R2 = [self winnerForTriplet:D b:E c:F];
