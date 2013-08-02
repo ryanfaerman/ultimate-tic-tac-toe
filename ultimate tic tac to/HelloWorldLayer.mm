@@ -155,6 +155,11 @@ BOOL paused = NO;
   while([self getChildByTag:kTagPlayerToken] != nil) {
     [self removeChildByTag:kTagPlayerToken cleanup:YES];
   }
+  
+  // whack all indicators
+  while([self getChildByTag:kTagIndicatorToken] != nil) {
+    [self removeChildByTag:kTagIndicatorToken cleanup:YES];
+  }
 }
 
 - (void) boardWon:(NSNotification *)notification
@@ -175,6 +180,7 @@ BOOL paused = NO;
     }
     
     winnerToken.position = indicatorLocation;
+    winnerToken.tag = kTagIndicatorToken;
     [self addChild:winnerToken];
   } else {
     NSLog(@"stalemate... poor baby");
