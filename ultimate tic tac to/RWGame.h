@@ -11,8 +11,13 @@
 @interface RWGame : RWBoard
 
 @property (atomic) int nextBoard;
+@property (atomic) bool isPlaying;
+@property (atomic, retain) Class currentPlayer;
 
 - (RWBoard *) blank;
 - (BOOL) playPosition:(int)position onBoard:(int)b withPlayer:(Class)player;
+- (BOOL) nextIsPlayable;
+- (void) notify;
 
++ (RWGame *)sharedGame;
 @end

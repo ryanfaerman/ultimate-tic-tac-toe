@@ -1,14 +1,14 @@
 //
-//  RWEmpty.m
+//  RWStalemate.m
 //  ultimate tic tac to
 //
-//  Created by Ryan Faerman on 7/30/13.
+//  Created by Ryan Faerman on 7/31/13.
 //  Copyright (c) 2013 Ryan Faerman. All rights reserved.
 //
 
-#import "RWEmpty.h"
+#import "RWStalemate.h"
 
-@implementation RWEmpty
+@implementation RWStalemate
 - (NSString *)description
 {
   return @"Nobody";

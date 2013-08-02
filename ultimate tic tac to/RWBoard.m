@@ -11,6 +11,7 @@
 #import "RWEmpty.h"
 #import "RWPlayerX.h"
 #import "RWPlayerO.h"
+#import "RWStalemate.h"
 
 @implementation RWBoard
 @synthesize board, boardWinner;
@@ -22,6 +23,11 @@
   }
   
   return self;
+}
+
+- (void) notify
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"RWBoardWon" object:self];
 }
 
 #pragma mark - Interface
@@ -55,7 +61,17 @@
     winner = [RWPlayerO class];
   }
   
+  // No moves left... stalemate
+  if ([self positionsRemaining] == 0) {
+    winner = [RWStalemate class];
+  }
+  
   boardWinner = [[winner alloc] init];
+  
+  // winner winner chicken dinner!
+  if (winner != [RWEmpty class]) {
+    [self notify];
+  }
   
   return boardWinner;
 };
@@ -66,6 +82,8 @@
   // Make sure the board position is open
   if ([[[board objectAtIndex:position] winner] isClass:[RWEmpty class]]) {
     [board setObject:[[player alloc] init] atIndexedSubscript:position];
+    [self winner];
+    
     return YES;
   }
   
@@ -146,6 +164,17 @@
   }
   
   return winner;
+}
+
+- (int) positionsRemaining
+{
+  int remaining = 0;
+  for (RWPosition *position in board) {
+    if ([[position winner] isClass:[RWEmpty class]]) {
+      remaining++;
+    }
+  }
+  return remaining;
 }
 
 @end

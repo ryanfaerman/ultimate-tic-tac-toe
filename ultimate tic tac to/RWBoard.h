@@ -23,5 +23,7 @@
 - (Class) winnerForRows;
 - (Class) winnerForColumns;
 - (Class) winnerForDiagonals;
+- (int) positionsRemaining;
+- (void) notify;
 
 @end

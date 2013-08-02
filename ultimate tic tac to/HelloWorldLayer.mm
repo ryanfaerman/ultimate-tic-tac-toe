@@ -8,6 +8,8 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "MenuLayer.h"
+#import "GameOverLayer.h"
 
 #import "CCTouchDispatcher.h"
 #import "SimpleAudioEngine.h"
@@ -20,11 +22,18 @@
 #import "RWBoard.h"
 #import "RWPlayerX.h"
 #import "RWPlayerO.h"
+#import "RWStalemate.h"
 
 #import "RWGame.h"
+#import "RWPositionHelper.h"
+#import "RWPhonePositionHelper.h"
+#import "RWAssetHelper.h"
+#import "RWPhoneAssetHelper.h"
 
 enum {
 	kTagParentNode = 1,
+  kTagPlayerToken = 2,
+  kTagIndicatorToken = 3,
 };
 
 CCSprite *player_x;
@@ -33,20 +42,19 @@ CCSprite *board;
 
 CCSprite *o_source;
 CCSprite *x_source;
+CCSprite *boardIndicator;
+CCSprite *playerIndicator;
 
-CCSprite *moving_target;
-CCLabelTTF *spacesLeft;
+CCSprite *pauseButton;
+
+Class PositionHelper;
+Class AssetHelper;
+
+RWGame *Game;
 
 
-NSMutableArray *boardMap;
-
-NSMutableArray *masterGameBoard;
-
-BOOL is_x_turn = YES;
-BOOL first_contact = YES;
 BOOL game_over = NO;
 BOOL paused = NO;
-int spaces_left = 81;
 
 #pragma mark - HelloWorldLayer
 
@@ -75,106 +83,112 @@ int spaces_left = 81;
 {
 	if( (self=[super init])) {
     
-    
-    boardMap = [[NSMutableArray alloc] initWithCapacity:81];
-    for (int i = 1; i <= 81; i++) {
-      [boardMap addObject:@"-"];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
+      /* Device is iPad */
+      PositionHelper = [RWPositionHelper class];
+      AssetHelper = [RWAssetHelper class];
+    } else {
+      PositionHelper = [RWPhonePositionHelper class];
+      AssetHelper = [RWPhoneAssetHelper class];
     }
     
-    masterGameBoard = [[NSMutableArray alloc] initWithCapacity:9];
-    for (int i = 1; i <= 9; i++) {
-      [masterGameBoard addObject:@"-"];
-    }
-		
 		self.touchEnabled = YES;
 		self.accelerometerEnabled = YES;
 		CGSize s = [CCDirector sharedDirector].winSize;
 		
 		//Set up background
     
-    CCSprite* bg = [CCSprite spriteWithFile:@"retina_wood_@2X.png"
+    CCSprite* bg = [CCSprite spriteWithFile:@"retina_wood.png"
                                        rect:CGRectMake(0, 0, s.width, s.height)];
     ccTexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
     [bg.texture setTexParameters:&params];
     [bg setPosition:ccp(s.width * 0.5f, s.height * 0.5f)];
     [self addChild:bg];
 		
-    board = [CCSprite spriteWithFile:@"board.png"];
-    board.position = ccp(520, 385);
+    board = [CCSprite spriteWithFile:[AssetHelper board]];
+    board.position = ccp([PositionHelper boardSprite].x, [PositionHelper boardSprite].y);
     [self addChild:board];
     
-    CCLabelTTF *spacesLeft = [CCLabelTTF labelWithString:@"81" fontName:@"Marker Felt" fontSize:32];
-		[self addChild:spacesLeft z:0];
-		[spacesLeft setColor:ccc3(0,0,255)];
-		spacesLeft.position = ccp( 70, s.height-50);
     
-    
-    o_source = [CCSprite spriteWithFile:@"12-o@2x.png"];
-    o_source.position = ccp(70, 350);
+    o_source = [CCSprite spriteWithFile:[AssetHelper playerO]];
+    o_source.position = ccp([PositionHelper playerOSource].x, [PositionHelper playerOSource].y);
     [self addChild:o_source];
-    x_source = [CCSprite spriteWithFile:@"11-x@2x.png"];
-    x_source.position = ccp(70, 450);
+    x_source = [CCSprite spriteWithFile:[AssetHelper playerX]];
+    x_source.position = ccp([PositionHelper playerXSource].x, [PositionHelper playerXSource].y);
     [self addChild:x_source];
     
-    RWBoard *board = [[RWBoard alloc] init];
-    NSLog(@"WELCOME TO THE BOARD:%@", board);
-    [board playPosition:0 withPlayer:[RWPlayerX class]];
-    [board playPosition:1 withPlayer:[RWPlayerX class]];
-    [board playPosition:2 withPlayer:[RWPlayerX class]];
-    NSLog(@"And the Winner is: %@", [board winner]);
+    boardIndicator = [CCSprite spriteWithFile:[AssetHelper boardIndicator]];
+    boardIndicator.position = ccp(-1000, -1000);
+    [self addChild:boardIndicator];
     
-    RWGame *theGame = [[RWGame alloc] init];
-    NSLog(@"WELCOME TO THE GAME:%@", theGame);
-    [theGame playPosition:0 onBoard:0 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:0 onBoard:1 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:0 onBoard:2 withPlayer:[RWPlayerX class]];
+    playerIndicator = [CCSprite spriteWithFile:[AssetHelper playerIndicator]];
+    playerIndicator.position = ccp([PositionHelper currentPlayerIndicator].x, [PositionHelper currentPlayerIndicator].y);
+    [self addChild:playerIndicator];
     
-    [theGame playPosition:1 onBoard:0 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:1 onBoard:1 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:1 onBoard:2 withPlayer:[RWPlayerX class]];
+    pauseButton = [CCSprite spriteWithFile:[AssetHelper pauseButton]];
+    pauseButton.position = ccp([PositionHelper pauseButtonLocation].x, [PositionHelper pauseButtonLocation].y);
+    [self addChild:pauseButton];
     
-    [theGame playPosition:2 onBoard:0 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:2 onBoard:1 withPlayer:[RWPlayerX class]];
-    [theGame playPosition:2 onBoard:2 withPlayer:[RWPlayerX class]];
     
-    NSLog(@"And the Winner is: %@", [theGame winner]);
     
-		
-		
-		
-//    // IMPORTANT:
-//    // The sprite frames will be cached AND RETAINED, and they won't be released unless you call
-//    //     [[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
-//    //NOTE:
-//    //The name of your .png and .plist must be the same name
-//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"foo.plist"];
-//    //
-//    // Animation using Sprite Sheet
-//    //
-//    CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:@"smoke1.png"]; //"grossini_dance_01.png" comes from your .plist file
-//    sprite.position = ccp( s.width/2-80, s.height/2);
-//    
-//    CCSpriteBatchNode *batchNode = [CCSpriteBatchNode batchNodeWithFile:@"foo.png"];
-//    [batchNode addChild:sprite];
-//    [self addChild:batchNode];
-//    
-//    
-//    NSMutableArray *animFrames = [NSMutableArray array];
-//    for(int i = 1; i < 5; i++) {
-//      
-//      CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"smoke%d.png",i]];
-//      [animFrames addObject:frame];
-//    }
-//    CCAnimation *animation = [CCAnimation animation];
-//    [sprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:animation restoreOriginalFrame:NO] ]];
-//    
-//    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Fuelship_Syphus.mp3"];
-//    [CDAudioManager sharedManager].backgroundMusic.volume = 0.2f;
-		
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWon:) name:@"RWBoardWon" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameWon:) name:@"RWGameWon" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameReset:) name:@"RWGameReset" object:nil];
+    
+    Game = [RWGame sharedGame];
+        
 
 		[self scheduleUpdate];
 	}
 	return self;
+}
+
+- (void) gameReset:(NSNotification *)notification
+{
+  // board offscreen
+  boardIndicator.position = ccp(-1000, -1000);
+  
+  // x goes first
+  playerIndicator.position = ccp([PositionHelper currentPlayerIndicator].x, [PositionHelper currentPlayerIndicator].y);
+  
+  // whack all tokens
+  while([self getChildByTag:kTagPlayerToken] != nil) {
+    [self removeChildByTag:kTagPlayerToken cleanup:YES];
+  }
+}
+
+- (void) boardWon:(NSNotification *)notification
+{
+  int winnerBoard = [[Game board] indexOfObject:[notification object]];
+  
+  CGPoint indicatorLocation = ccp(([PositionHelper boardCenterPointForBoard:winnerBoard].x + [PositionHelper boardIndicatorSpriteOffset].x), ([PositionHelper boardCenterPointForBoard:winnerBoard].y + [PositionHelper boardIndicatorSpriteOffset].y));
+  
+  RWBoard *board = [notification object];
+  
+  if (![[board boardWinner] isClass:[RWStalemate class]]) {
+    CCSprite *winnerToken;
+    NSLog(@"winner is: %@", [board boardWinner]);
+    if ([[board boardWinner] isClass:[RWPlayerX class]]) {
+      winnerToken = [CCSprite spriteWithFile:[AssetHelper playerXWinner]];
+    } else {
+      winnerToken = [CCSprite spriteWithFile:[AssetHelper playerOWinner]];
+    }
+    
+    winnerToken.position = indicatorLocation;
+    [self addChild:winnerToken];
+  } else {
+    NSLog(@"stalemate... poor baby");
+  }
+  
+  
+  
+  NSLog(@"board %d was won!", winnerBoard);
+}
+
+- (void) gameWon:(NSNotification *)notification
+{
+  [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
+  NSLog(@"GAME OVER. %@ won.", [[notification object] winner]);
 }
 
 
@@ -191,28 +205,13 @@ int spaces_left = 81;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	CGPoint location = [self convertTouchToNodeSpace: touch];
   
+  NSLog(@"(%f, %f)", location.x, location.y);
   
   CGRect boardRect = [board boundingBox];
   CGRect pointRect = CGRectMake(location.x, location.y, 1.0f, 1.0f);
   
-  int board_x = (int)(location.x - 145)/250;
-  int board_y = (int)(location.y - 8)/250;
-  int sub_x = (int)((location.x - 145)/82)%3;
-  int sub_y = (int)((location.y - 8)/82)%3;
-  int grid_x = (int)(location.x - 145)/82;
-  int grid_y = (int)(location.y - 8)/82;
-  int locator = grid_y*9 + grid_x;
-  int boardNum = 3*board_y + board_x;
-  
-//  NSLog(@"I love it when you touch me here: (%f, %f)", location.x, location.y);
-//  NSLog(@"in square: (%d, %d)", grid_x, grid_y);
-//  NSLog(@"relative square: (%d, %d)", sub_x, sub_y);
-  NSLog(@"in board: %d", boardNum);
-//  NSLog(@"(%d, %d) = %d => %@", grid_x, grid_y, locator, [boardMap objectAtIndex: locator]);
-//  NSLog(@"board: (%d, %d), locator: %d", board_x, board_y, locator);
-  
-  NSString *desiredSquare = [boardMap objectAtIndex: locator];
-  if (![desiredSquare isEqual: @"-"]) {
+  if(CGRectIntersectsRect([pauseButton boundingBox], pointRect)) {
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[MenuLayer scene]]];
     return;
   }
   
@@ -223,193 +222,50 @@ int spaces_left = 81;
   if(game_over || paused) {
     return;
   }
-    
-  CCSprite *player;
-  spaces_left--;
-  NSString *spacesString = [[NSString alloc] initWithFormat:@"%d", spaces_left ];
 
+  CGPoint tokenLocation = ccp(([PositionHelper positionCenterPointForLocation:location].x + [PositionHelper playerSpriteOffset].x), ([PositionHelper positionCenterPointForLocation:location].y + [PositionHelper playerSpriteOffset].y));
   
-  if (is_x_turn) {
-    player = [CCSprite spriteWithFile:@"11-x@2x.png"];
-    player.position = ccp(70, 450);
-    player_x = player;
-//    boardMap[board_y][board_x][sub_y][sub_x] = @"x";
-    [boardMap setObject:@"x" atIndexedSubscript:locator];
-    
+  int indicatorY = 0;
+  CCSprite *player;
+  if ([Game currentPlayer] == [RWPlayerX class]) {
+    player = [CCSprite spriteWithFile:[AssetHelper playerX]];
+    player.position = ccp([PositionHelper playerXSource].x, [PositionHelper playerXSource].y);
+    indicatorY = [PositionHelper playerOSource].y;
   } else {
-    player = [CCSprite spriteWithFile:@"12-o@2x.png"];
-    player.position = ccp(70, 350);
-//    boardMap[board_y][board_x][sub_y][sub_x] = @"o";
-    [boardMap setObject:@"o" atIndexedSubscript:locator];
+    player = [CCSprite spriteWithFile:[AssetHelper playerO]];
+    player.position = ccp([PositionHelper playerOSource].x, [PositionHelper playerOSource].y);
+    indicatorY = [PositionHelper playerXSource].y;
   }
   
-  is_x_turn = !is_x_turn;
-  [self addChild:player];
+  player.tag = kTagPlayerToken;
   
-  id move = [CCMoveTo actionWithDuration:0.3f position:location];
-  id wrapperAction = [CCCallFunc actionWithTarget:self selector:@selector(actionComplete)];
-  [player runAction: [CCSequence actions:move, wrapperAction, nil]];
-  
-  NSString *winner = [self winnerForBoard:board_x By:board_y];
-//  NSLog(@"board %d won by %@", boardNum, winner);
-  if(![winner isEqual:@"-"]) {
-    CCSprite *winnerMarker;
+  if([Game playPosition:[PositionHelper positionNumberFromLocation:location] onBoard:[PositionHelper boardNumberFromLocation:location] withPlayer:[Game currentPlayer]]) {
+    [self addChild:player];
     
-    [masterGameBoard setObject:winner atIndexedSubscript:boardNum];
+    id move = [CCMoveTo actionWithDuration:0.3f position:tokenLocation];
+    id wrapperAction = [CCCallFunc actionWithTarget:self selector:@selector(actionComplete)];
+    [player runAction: [CCSequence actions:move, wrapperAction, nil]];
     
-    if([winner isEqual:@"x"]) {
-      winnerMarker = [CCSprite spriteWithFile:@"winner-x.png"];
+    
+    CGPoint indicatorLocation = ccp(([PositionHelper boardCenterPointForBoard:[Game nextBoard]].x + [PositionHelper boardIndicatorSpriteOffset].x), ([PositionHelper boardCenterPointForBoard:[Game nextBoard]].y + [PositionHelper boardIndicatorSpriteOffset].y));
+
+    if ([Game nextIsPlayable]) {
+      [boardIndicator runAction:[CCMoveTo actionWithDuration:0.3f position:indicatorLocation]];
     } else {
-      winnerMarker = [CCSprite spriteWithFile:@"winner-o.png"];
-    }
-    winnerMarker.position = ccp(250*board_x + 125 + 145, 250*board_y+125);
-    [self addChild:winnerMarker];
-  }
-  
-  NSString *gameWinner = [self winnerForGame];
-  if(![gameWinner isEqual:@"-"]) {
-    
-    NSString *winnerString;
-    game_over = YES;
-    if([winner isEqual:@"x"]) {
-      winnerString = @"X won!";
-    } else {
-      winnerString = @"O won!";
+      boardIndicator.position = ccp(-1000, -1000);
     }
     
-    CGSize s = [CCDirector sharedDirector].winSize;
-    CCLabelTTF *label = [CCLabelTTF labelWithString:winnerString fontName:@"Marker Felt" fontSize:32];
-		[self addChild:label z:0];
-		[label setColor:ccc3(0,0,255)];
-		label.position = ccp( s.width/2, s.height-50);
+    [playerIndicator runAction:[CCMoveTo actionWithDuration:0.3f position:ccp([PositionHelper currentPlayerIndicator].x, indicatorY)]];
+    
   }
-  
   
 }
 
 -(void) actionComplete
 {
-  
   [[SimpleAudioEngine sharedEngine] playEffect:@"thid.mp3"];
-
-  
 }
 
-- (int) boardFromBoardX:(int)Bx By:(int)By
-{
-  return 3*By + Bx;
-}
-
-- (int) gridFromBoardX:(int)Bx By:(int)By
-{
-  return 27*By + 3*Bx;
-}
-
-- (NSString *) winnerForGame
-{
-  NSString *winner = @"-";
-  
-  NSString *A = [masterGameBoard objectAtIndex:0];
-  NSString *B = [masterGameBoard objectAtIndex:1];
-  NSString *C = [masterGameBoard objectAtIndex:2];
-  
-  NSString *D = [masterGameBoard objectAtIndex:3];
-  NSString *E = [masterGameBoard objectAtIndex:4];
-  NSString *F = [masterGameBoard objectAtIndex:5];
-  
-  NSString *G = [masterGameBoard objectAtIndex:6];
-  NSString *H = [masterGameBoard objectAtIndex:7];
-  NSString *I = [masterGameBoard objectAtIndex:8];
-  
-  NSLog(@"\n %@ %@ %@ \n %@ %@ %@ \n %@ %@ %@ \n", A, B, C, D, E, F, G, H, I);
-  
-  NSString *R1 = [self winnerForTriplet:A b:B c:C];
-  NSString *R2 = [self winnerForTriplet:D b:E c:F];
-  NSString *R3 = [self winnerForTriplet:G b:H c:I];
-  
-  NSString *C1 = [self winnerForTriplet:A b:D c:G];
-  NSString *C2 = [self winnerForTriplet:B b:E c:H];
-  NSString *C3 = [self winnerForTriplet:C b:F c:I];
-  
-  NSString *D1 = [self winnerForTriplet:A b:E c:I];
-  NSString *D2 = [self winnerForTriplet:C b:E c:G];
-  
-  if([R1 isEqual:@"x"] || [R2 isEqual:@"x"] || [R3 isEqual:@"x"] || [C1 isEqual:@"x"] || [C2 isEqual:@"x"] || [C3 isEqual:@"x"] || [D1 isEqual:@"x"] || [D2 isEqual:@"x"]) {
-    winner = @"x";
-  } else if ([R1 isEqual:@"o"] || [R2 isEqual:@"o"] || [R3 isEqual:@"o"] || [C1 isEqual:@"o"] || [C2 isEqual:@"o"] || [C3 isEqual:@"o"] || [D1 isEqual:@"o"] || [D2 isEqual:@"o"]) {
-    winner = @"o";
-  };
-  
-  
-  return winner;
-}
-
-- (NSString*) winnerForBoard:(int)Bx By:(int)By
-{
-  NSString *winner = @"-";
-  
-  //board array ids
-  int a = [self gridFromBoardX:Bx By:By];
-  int b = a + 1;
-  int c = a + 2;
-  
-  int d = a + 9;
-  int e = b + 9;
-  int f = c + 9;
-  
-  int g = d + 9;
-  int h = e + 9;
-  int i = f + 9;
-  
-  NSString *A = [boardMap objectAtIndex:a];
-  NSString *B = [boardMap objectAtIndex:b];
-  NSString *C = [boardMap objectAtIndex:c];
-  
-  NSString *D = [boardMap objectAtIndex:d];
-  NSString *E = [boardMap objectAtIndex:e];
-  NSString *F = [boardMap objectAtIndex:f];
-  
-  NSString *G = [boardMap objectAtIndex:g];
-  NSString *H = [boardMap objectAtIndex:h];
-  NSString *I = [boardMap objectAtIndex:i];
-  
-  NSLog(@"\n %@ %@ %@ \n %@ %@ %@ \n %@ %@ %@ \n", A, B, C, D, E, F, G, H, I);
-  
-  NSString *R1 = [self winnerForTriplet:A b:B c:C];
-  NSString *R2 = [self winnerForTriplet:D b:E c:F];
-  NSString *R3 = [self winnerForTriplet:G b:H c:I];
-  
-  NSString *C1 = [self winnerForTriplet:A b:D c:G];
-  NSString *C2 = [self winnerForTriplet:B b:E c:H];
-  NSString *C3 = [self winnerForTriplet:C b:F c:I];
-  
-  NSString *D1 = [self winnerForTriplet:A b:E c:I];
-  NSString *D2 = [self winnerForTriplet:C b:E c:G];
-  
-  if([R1 isEqual:@"x"] || [R2 isEqual:@"x"] || [R3 isEqual:@"x"] || [C1 isEqual:@"x"] || [C2 isEqual:@"x"] || [C3 isEqual:@"x"] || [D1 isEqual:@"x"] || [D2 isEqual:@"x"]) {
-    winner = @"x";
-  } else if ([R1 isEqual:@"o"] || [R2 isEqual:@"o"] || [R3 isEqual:@"o"] || [C1 isEqual:@"o"] || [C2 isEqual:@"o"] || [C3 isEqual:@"o"] || [D1 isEqual:@"o"] || [D2 isEqual:@"o"]) {
-    winner = @"o";
-  };
-  
-  
-  return winner;
-}
-
-- (NSString*) winnerForTriplet:(NSString *)A b:(NSString *)B c:(NSString *)C
-{
-  NSString *winner = @"-";
-  if ([A isEqual:B] && [B isEqual:C]) {
-    if ([A isEqual:@"x"]) {
-      winner = @"x";
-      NSLog(@"winner x");
-    } else if ([A isEqual:@"o"]) {
-      winner = @"o";
-      NSLog(@"winner o");
-    }
-  }
-  return winner;
-}
 
 
 #pragma mark GameKit delegate
