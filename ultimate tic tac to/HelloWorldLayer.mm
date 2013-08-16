@@ -29,6 +29,8 @@
 #import "RWPhonePositionHelper.h"
 #import "RWAssetHelper.h"
 #import "RWPhoneAssetHelper.h"
+#import "RWGameTimer.h"
+#import "RWPlayTimer.h"
 
 enum {
 	kTagParentNode = 1,
@@ -49,6 +51,9 @@ CCSprite *pauseButton;
 
 Class PositionHelper;
 Class AssetHelper;
+
+CCLabelTTF *xTimerLabel;
+CCLabelTTF *oTimerLabel;
 
 RWGame *Game;
 
@@ -130,6 +135,18 @@ BOOL paused = NO;
     [self addChild:pauseButton];
     
     
+    xTimerLabel = [CCLabelTTF labelWithString:@"00:00" fontName:@"Marker Felt" fontSize:18];
+    [self addChild:xTimerLabel z:0];
+    [xTimerLabel setColor:ccc3(30,30,30)];
+    xTimerLabel.position = ccp( [PositionHelper playerXSource].x, [PositionHelper playerXSource].y - 25);
+    
+    oTimerLabel = [CCLabelTTF labelWithString:@"00:00" fontName:@"Marker Felt" fontSize:18];
+    [self addChild:oTimerLabel z:0];
+    [oTimerLabel setColor:ccc3(100,100,100)];
+    oTimerLabel.position = ccp( [PositionHelper playerOSource].x, [PositionHelper playerOSource].y - 25);
+    
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWon:) name:@"RWBoardWon" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameWon:) name:@"RWGameWon" object:nil];
@@ -137,10 +154,21 @@ BOOL paused = NO;
     
     Game = [RWGame sharedGame];
         
-
+    [self schedule: @selector(ticktock:) interval:1];
 		[self scheduleUpdate];
 	}
 	return self;
+}
+
+- (void)ticktock:(ccTime) dt
+{
+  [[RWGameTimer sharedTimers] tick];
+  RWPlayTimer *xTime = [[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWPlayerX class]];
+  RWPlayTimer *oTime = [[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWPlayerO class]];
+  NSLog(@"game duration: %@",[[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWGame class]]);
+  
+  [xTimerLabel setString:[xTime description]];
+  [oTimerLabel setString:[oTime description]];
 }
 
 - (void) gameReset:(NSNotification *)notification
@@ -160,6 +188,16 @@ BOOL paused = NO;
   while([self getChildByTag:kTagIndicatorToken] != nil) {
     [self removeChildByTag:kTagIndicatorToken cleanup:YES];
   }
+  
+  // reset clocks
+  [[RWGameTimer sharedTimers] resetAll];
+  
+  // reset clock labels
+  [xTimerLabel setColor:ccc3(30,30,30)];
+  [oTimerLabel setColor:ccc3(100,100,100)];
+  
+  [xTimerLabel setString:@"00:00"];
+  [oTimerLabel setString:@"00:00"];
 }
 
 - (void) boardWon:(NSNotification *)notification
@@ -222,6 +260,7 @@ BOOL paused = NO;
   }
   
   if(!CGRectIntersectsRect(boardRect, pointRect)) {
+//    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
     return;
   }
   
@@ -237,10 +276,16 @@ BOOL paused = NO;
     player = [CCSprite spriteWithFile:[AssetHelper playerX]];
     player.position = ccp([PositionHelper playerXSource].x, [PositionHelper playerXSource].y);
     indicatorY = [PositionHelper playerOSource].y;
+    
+    [xTimerLabel setColor:ccc3(100,100,100)];
+    [oTimerLabel setColor:ccc3(30,30,30)];
   } else {
     player = [CCSprite spriteWithFile:[AssetHelper playerO]];
     player.position = ccp([PositionHelper playerOSource].x, [PositionHelper playerOSource].y);
     indicatorY = [PositionHelper playerXSource].y;
+    
+    [oTimerLabel setColor:ccc3(100,100,100)];
+    [xTimerLabel setColor:ccc3(30,30,30)];
   }
   
   player.tag = kTagPlayerToken;
