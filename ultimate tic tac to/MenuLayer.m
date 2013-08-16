@@ -66,6 +66,7 @@ CCLabelTTF *rulesLabel;
     rulesLabel.position = ccp( s.width/2, s.height/2-50);
     
     
+    
   }
   
   return self;

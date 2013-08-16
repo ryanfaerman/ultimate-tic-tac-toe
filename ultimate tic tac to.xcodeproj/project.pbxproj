@@ -210,6 +210,8 @@
 		758432B317AA0E6A0033A8F7 /* RWPhonePositionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B217AA0E6A0033A8F7 /* RWPhonePositionHelper.m */; };
 		758432B617AA10690033A8F7 /* RWAssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B517AA10690033A8F7 /* RWAssetHelper.m */; };
 		758432B917AA11760033A8F7 /* RWPhoneAssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B817AA11760033A8F7 /* RWPhoneAssetHelper.m */; };
+		759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789A17BC760C00E6DD93 /* RWPlayTimer.m */; };
+		759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789D17BC789300E6DD93 /* RWGameTimer.m */; };
 		75A7EA8617977BD000154C33 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8517977BD000154C33 /* line.png */; };
 		75A7EA8817977F9000154C33 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8717977F9000154C33 /* board.png */; };
 		75B23FFB17A8996A005D8823 /* RWPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B23FFA17A8996A005D8823 /* RWPosition.m */; };
@@ -642,6 +644,10 @@
 		758432B517AA10690033A8F7 /* RWAssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWAssetHelper.m; sourceTree = "<group>"; };
 		758432B717AA11760033A8F7 /* RWPhoneAssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPhoneAssetHelper.h; sourceTree = "<group>"; };
 		758432B817AA11760033A8F7 /* RWPhoneAssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPhoneAssetHelper.m; sourceTree = "<group>"; };
+		759C789917BC760C00E6DD93 /* RWPlayTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPlayTimer.h; sourceTree = "<group>"; };
+		759C789A17BC760C00E6DD93 /* RWPlayTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPlayTimer.m; sourceTree = "<group>"; };
+		759C789C17BC789300E6DD93 /* RWGameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameTimer.h; sourceTree = "<group>"; };
+		759C789D17BC789300E6DD93 /* RWGameTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWGameTimer.m; sourceTree = "<group>"; };
 		75A7EA8517977BD000154C33 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		75A7EA8717977F9000154C33 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		75B23FF917A8996A005D8823 /* RWPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPosition.h; sourceTree = "<group>"; };
@@ -1350,6 +1356,10 @@
 				75B23FFD17A89AEB005D8823 /* RWEmpty.m */,
 				75B2400517A8A779005D8823 /* RWBoard.h */,
 				75B2400617A8A779005D8823 /* RWBoard.m */,
+				759C789917BC760C00E6DD93 /* RWPlayTimer.h */,
+				759C789A17BC760C00E6DD93 /* RWPlayTimer.m */,
+				759C789C17BC789300E6DD93 /* RWGameTimer.h */,
+				759C789D17BC789300E6DD93 /* RWGameTimer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1646,6 +1656,8 @@
 				75D620E217AB368A00DA0133 /* MenuLayer.m in Sources */,
 				75D620E517AB476200DA0133 /* GameOverLayer.m in Sources */,
 				75D620F317AB59F900DA0133 /* CreditsOverlay.m in Sources */,
+				759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */,
+				759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
