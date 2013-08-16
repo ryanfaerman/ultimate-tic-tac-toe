@@ -77,6 +77,7 @@ static RWGame *sharedInstance = nil;
     
     NSLog(@"next board is: %d", nextBoard);
     isPlaying = YES;
+    [self winner];
     return YES;
   }
   
