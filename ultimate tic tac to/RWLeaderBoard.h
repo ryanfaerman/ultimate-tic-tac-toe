@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RWScore.h"
 
 @interface RWLeaderBoard : NSObject
 
+@property (atomic, retain) NSMutableSet *engines;
+
++ (RWLeaderBoard *)shared;
+
+- (void) enroll:(Class)engine;
+- (void) push:(RWScore*)score;
+
+- (NSArray *) top:(NSNumber *)quantity;
+- (NSDictionary *) top:(NSNumber *)quantity forlast:(NSNumber *)days;
+- (NSArray *) top:(NSNumber *)quantity forlast:(NSNumber *)days in:(Class)engine;
+// [[RWLeaderBoard shared] top: 25 forLast: 30, in: [RWGameCenterEngine class]]
 @end
