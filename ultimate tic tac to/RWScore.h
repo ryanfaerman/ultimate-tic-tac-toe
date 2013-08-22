@@ -11,10 +11,12 @@
 
 @interface RWScore : NSObject
 
+@property (atomic, retain) NSNumber *primaryKey;
 @property (atomic, retain) NSNumber *value;
 @property (atomic, retain) NSDate *date;
 @property (atomic, retain) RWPosition *player;
 
 - (void) setDefaults;
+- (RWScore *) initWithValue:(NSNumber *)v for:(RWPosition *)p on:(NSDate *)d;
 
 @end
