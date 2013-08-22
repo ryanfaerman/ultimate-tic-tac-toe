@@ -32,6 +32,9 @@
 #import "RWGameTimer.h"
 #import "RWPlayTimer.h"
 
+#import "RWLeaderBoard.h"
+#import "RWLocalLeaderBoardEngine.h"
+
 enum {
 	kTagParentNode = 1,
   kTagPlayerToken = 2,
@@ -153,6 +156,16 @@ BOOL paused = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameReset:) name:@"RWGameReset" object:nil];
     
     Game = [RWGame sharedGame];
+    
+    [[RWLeaderBoard shared] enroll:[RWLocalLeaderBoardEngine class]];
+    RWScore *score = [[RWScore alloc] init];
+    score.value = [[NSNumber alloc] initWithInt:45];
+    score.player = [[RWPlayerX alloc] init];
+    [[RWLeaderBoard shared] push:score];
+    
+    NSArray *tops = [[RWLeaderBoard shared] top:[[NSNumber alloc] initWithInt: 10] forlast:[[NSNumber alloc] initWithInt: 7] in:[RWLocalLeaderBoardEngine class]];
+    NSLog(@"%@", tops);
+    
         
     [self schedule: @selector(ticktock:) interval:1];
 		[self scheduleUpdate];
