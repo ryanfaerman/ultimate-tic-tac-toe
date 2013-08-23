@@ -12,6 +12,10 @@
 		75284CD917A2129800CC47CB /* winner-o.png in Resources */ = {isa = PBXBuildFile; fileRef = 75284CD717A2129800CC47CB /* winner-o.png */; };
 		75284CDC17A21EAD00CC47CB /* foo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75284CDA17A21EAD00CC47CB /* foo.plist */; };
 		75284CDD17A21EAD00CC47CB /* foo.png in Resources */ = {isa = PBXBuildFile; fileRef = 75284CDB17A21EAD00CC47CB /* foo.png */; };
+		7543D9ED17C4523C00C4AA1B /* RWScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7543D9EC17C4523C00C4AA1B /* RWScore.m */; };
+		7543D9F317C460FE00C4AA1B /* RWLeaderBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7543D9F217C460FE00C4AA1B /* RWLeaderBoard.m */; };
+		7543D9F617C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7543D9F517C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m */; };
+		7543D9F817C5A0A100C4AA1B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7543D9F717C5A0A100C4AA1B /* libsqlite3.dylib */; };
 		7571C57E178E3BD0009F6569 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7571C57D178E3BD0009F6569 /* QuartzCore.framework */; };
 		7571C580178E3BD0009F6569 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7571C57F178E3BD0009F6569 /* OpenGLES.framework */; };
 		7571C582178E3BD0009F6569 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7571C581178E3BD0009F6569 /* OpenAL.framework */; };
@@ -210,6 +214,15 @@
 		758432B317AA0E6A0033A8F7 /* RWPhonePositionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B217AA0E6A0033A8F7 /* RWPhonePositionHelper.m */; };
 		758432B617AA10690033A8F7 /* RWAssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B517AA10690033A8F7 /* RWAssetHelper.m */; };
 		758432B917AA11760033A8F7 /* RWPhoneAssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 758432B817AA11760033A8F7 /* RWPhoneAssetHelper.m */; };
+		758B807617C6DF13009DC68B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807517C6DF13009DC68B /* Parse.framework */; };
+		758B807817C6DF47009DC68B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807717C6DF47009DC68B /* CFNetwork.framework */; };
+		758B807A17C6DF54009DC68B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807917C6DF54009DC68B /* CoreLocation.framework */; };
+		758B807C17C6DF5D009DC68B /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807B17C6DF5D009DC68B /* libz.1.1.3.dylib */; };
+		758B807E17C6DF65009DC68B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807D17C6DF65009DC68B /* MobileCoreServices.framework */; };
+		758B808017C6DF73009DC68B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B807F17C6DF73009DC68B /* Security.framework */; };
+		758B808217C6DF78009DC68B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808117C6DF78009DC68B /* StoreKit.framework */; };
+		758B808417C6DF7E009DC68B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808317C6DF7E009DC68B /* SystemConfiguration.framework */; };
+		758B808617C6E0B4009DC68B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808517C6E0B4009DC68B /* FacebookSDK.framework */; };
 		759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789A17BC760C00E6DD93 /* RWPlayTimer.m */; };
 		759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789D17BC789300E6DD93 /* RWGameTimer.m */; };
 		75A7EA8617977BD000154C33 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8517977BD000154C33 /* line.png */; };
@@ -243,6 +256,14 @@
 		75284CD717A2129800CC47CB /* winner-o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-o.png"; sourceTree = "<group>"; };
 		75284CDA17A21EAD00CC47CB /* foo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = foo.plist; sourceTree = "<group>"; };
 		75284CDB17A21EAD00CC47CB /* foo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foo.png; sourceTree = "<group>"; };
+		7543D9EA17C451DD00C4AA1B /* RWLeaderboardProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWLeaderboardProtocol.h; sourceTree = "<group>"; };
+		7543D9EB17C4523C00C4AA1B /* RWScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWScore.h; sourceTree = "<group>"; };
+		7543D9EC17C4523C00C4AA1B /* RWScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWScore.m; sourceTree = "<group>"; };
+		7543D9F117C460FE00C4AA1B /* RWLeaderBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWLeaderBoard.h; sourceTree = "<group>"; };
+		7543D9F217C460FE00C4AA1B /* RWLeaderBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWLeaderBoard.m; sourceTree = "<group>"; };
+		7543D9F417C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWLocalLeaderBoardEngine.h; sourceTree = "<group>"; };
+		7543D9F517C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWLocalLeaderBoardEngine.m; sourceTree = "<group>"; };
+		7543D9F717C5A0A100C4AA1B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		7571C57A178E3BD0009F6569 /* ultimate tic tac to.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ultimate tic tac to.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7571C57D178E3BD0009F6569 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7571C57F178E3BD0009F6569 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -644,6 +665,15 @@
 		758432B517AA10690033A8F7 /* RWAssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWAssetHelper.m; sourceTree = "<group>"; };
 		758432B717AA11760033A8F7 /* RWPhoneAssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPhoneAssetHelper.h; sourceTree = "<group>"; };
 		758432B817AA11760033A8F7 /* RWPhoneAssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPhoneAssetHelper.m; sourceTree = "<group>"; };
+		758B807517C6DF13009DC68B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		758B807717C6DF47009DC68B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		758B807917C6DF54009DC68B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		758B807B17C6DF5D009DC68B /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		758B807D17C6DF65009DC68B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		758B807F17C6DF73009DC68B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		758B808117C6DF78009DC68B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		758B808317C6DF7E009DC68B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		758B808517C6E0B4009DC68B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		759C789917BC760C00E6DD93 /* RWPlayTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPlayTimer.h; sourceTree = "<group>"; };
 		759C789A17BC760C00E6DD93 /* RWPlayTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPlayTimer.m; sourceTree = "<group>"; };
 		759C789C17BC789300E6DD93 /* RWGameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameTimer.h; sourceTree = "<group>"; };
@@ -689,22 +719,81 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758B808417C6DF7E009DC68B /* SystemConfiguration.framework in Frameworks */,
+				758B808217C6DF78009DC68B /* StoreKit.framework in Frameworks */,
+				758B808017C6DF73009DC68B /* Security.framework in Frameworks */,
 				7571C57E178E3BD0009F6569 /* QuartzCore.framework in Frameworks */,
+				758B807E17C6DF65009DC68B /* MobileCoreServices.framework in Frameworks */,
+				758B807C17C6DF5D009DC68B /* libz.1.1.3.dylib in Frameworks */,
+				758B807A17C6DF54009DC68B /* CoreLocation.framework in Frameworks */,
+				7571C58C178E3BD0009F6569 /* CoreGraphics.framework in Frameworks */,
+				758B807817C6DF47009DC68B /* CFNetwork.framework in Frameworks */,
+				7571C584178E3BD0009F6569 /* AudioToolbox.framework in Frameworks */,
+				7543D9F817C5A0A100C4AA1B /* libsqlite3.dylib in Frameworks */,
 				7571C580178E3BD0009F6569 /* OpenGLES.framework in Frameworks */,
 				7571C582178E3BD0009F6569 /* OpenAL.framework in Frameworks */,
-				7571C584178E3BD0009F6569 /* AudioToolbox.framework in Frameworks */,
 				7571C586178E3BD0009F6569 /* AVFoundation.framework in Frameworks */,
 				7571C588178E3BD0009F6569 /* UIKit.framework in Frameworks */,
 				7571C58A178E3BD0009F6569 /* Foundation.framework in Frameworks */,
-				7571C58C178E3BD0009F6569 /* CoreGraphics.framework in Frameworks */,
 				7571C58E178E3BD0009F6569 /* CoreText.framework in Frameworks */,
 				7571C590178E3BD0009F6569 /* GameKit.framework in Frameworks */,
+				758B807617C6DF13009DC68B /* Parse.framework in Frameworks */,
+				758B808617C6E0B4009DC68B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7543D9E917C451B700C4AA1B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7543D9EA17C451DD00C4AA1B /* RWLeaderboardProtocol.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		7543D9EE17C458A300C4AA1B /* Timers */ = {
+			isa = PBXGroup;
+			children = (
+				759C789917BC760C00E6DD93 /* RWPlayTimer.h */,
+				759C789A17BC760C00E6DD93 /* RWPlayTimer.m */,
+				759C789C17BC789300E6DD93 /* RWGameTimer.h */,
+				759C789D17BC789300E6DD93 /* RWGameTimer.m */,
+			);
+			name = Timers;
+			sourceTree = "<group>";
+		};
+		7543D9EF17C458BD00C4AA1B /* Players & Positions */ = {
+			isa = PBXGroup;
+			children = (
+				75B23FF917A8996A005D8823 /* RWPosition.h */,
+				75B23FFA17A8996A005D8823 /* RWPosition.m */,
+				75B2401317A9E975005D8823 /* RWStalemate.h */,
+				75B2401417A9E975005D8823 /* RWStalemate.m */,
+				75B23FFF17A89B0D005D8823 /* RWPlayerX.h */,
+				75B2400217A89B2F005D8823 /* RWPlayerO.h */,
+				75B2400317A89B2F005D8823 /* RWPlayerO.m */,
+				75B2400017A89B0D005D8823 /* RWPlayerX.m */,
+				75B23FFC17A89AEB005D8823 /* RWEmpty.h */,
+				75B23FFD17A89AEB005D8823 /* RWEmpty.m */,
+			);
+			name = "Players & Positions";
+			sourceTree = "<group>";
+		};
+		7543D9F017C458DA00C4AA1B /* Leaderboards */ = {
+			isa = PBXGroup;
+			children = (
+				7543D9EB17C4523C00C4AA1B /* RWScore.h */,
+				7543D9EC17C4523C00C4AA1B /* RWScore.m */,
+				7543D9F117C460FE00C4AA1B /* RWLeaderBoard.h */,
+				7543D9F217C460FE00C4AA1B /* RWLeaderBoard.m */,
+				7543D9F417C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.h */,
+				7543D9F517C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m */,
+			);
+			name = Leaderboards;
+			sourceTree = "<group>";
+		};
 		7571C571178E3BD0009F6569 = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +814,16 @@
 		7571C57C178E3BD0009F6569 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				758B808517C6E0B4009DC68B /* FacebookSDK.framework */,
+				758B808317C6DF7E009DC68B /* SystemConfiguration.framework */,
+				758B808117C6DF78009DC68B /* StoreKit.framework */,
+				758B807F17C6DF73009DC68B /* Security.framework */,
+				758B807D17C6DF65009DC68B /* MobileCoreServices.framework */,
+				758B807B17C6DF5D009DC68B /* libz.1.1.3.dylib */,
+				758B807917C6DF54009DC68B /* CoreLocation.framework */,
+				758B807717C6DF47009DC68B /* CFNetwork.framework */,
+				758B807517C6DF13009DC68B /* Parse.framework */,
+				7543D9F717C5A0A100C4AA1B /* libsqlite3.dylib */,
 				7571C57D178E3BD0009F6569 /* QuartzCore.framework */,
 				7571C57F178E3BD0009F6569 /* OpenGLES.framework */,
 				7571C581178E3BD0009F6569 /* OpenAL.framework */,
@@ -758,6 +857,7 @@
 				7571C7BF178E3BD4009F6569 /* GLES-Render.mm */,
 				75D620E317AB476200DA0133 /* GameOverLayer.h */,
 				75D620E417AB476200DA0133 /* GameOverLayer.m */,
+				7543D9E917C451B700C4AA1B /* Protocols */,
 				75BBE28917A9F84100DC792F /* Helpers */,
 				75BBE28817A9F7DB00DC792F /* Models */,
 				7571C592178E3BD0009F6569 /* Resources */,
@@ -1342,24 +1442,13 @@
 		75BBE28817A9F7DB00DC792F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				75B23FF917A8996A005D8823 /* RWPosition.h */,
-				75B23FFA17A8996A005D8823 /* RWPosition.m */,
-				75B2401317A9E975005D8823 /* RWStalemate.h */,
-				75B2401417A9E975005D8823 /* RWStalemate.m */,
+				7543D9F017C458DA00C4AA1B /* Leaderboards */,
+				7543D9EF17C458BD00C4AA1B /* Players & Positions */,
 				75B2400817A8BF2A005D8823 /* RWGame.h */,
 				75B2400917A8BF2A005D8823 /* RWGame.m */,
-				75B23FFF17A89B0D005D8823 /* RWPlayerX.h */,
-				75B2400217A89B2F005D8823 /* RWPlayerO.h */,
-				75B2400317A89B2F005D8823 /* RWPlayerO.m */,
-				75B2400017A89B0D005D8823 /* RWPlayerX.m */,
-				75B23FFC17A89AEB005D8823 /* RWEmpty.h */,
-				75B23FFD17A89AEB005D8823 /* RWEmpty.m */,
 				75B2400517A8A779005D8823 /* RWBoard.h */,
 				75B2400617A8A779005D8823 /* RWBoard.m */,
-				759C789917BC760C00E6DD93 /* RWPlayTimer.h */,
-				759C789A17BC760C00E6DD93 /* RWPlayTimer.m */,
-				759C789C17BC789300E6DD93 /* RWGameTimer.h */,
-				759C789D17BC789300E6DD93 /* RWGameTimer.m */,
+				7543D9EE17C458A300C4AA1B /* Timers */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1658,6 +1747,9 @@
 				75D620F317AB59F900DA0133 /* CreditsOverlay.m in Sources */,
 				759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */,
 				759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */,
+				7543D9ED17C4523C00C4AA1B /* RWScore.m in Sources */,
+				7543D9F317C460FE00C4AA1B /* RWLeaderBoard.m in Sources */,
+				7543D9F617C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1719,6 +1811,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ultimate tic tac to/Prefix.pch";
@@ -1748,6 +1844,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ultimate tic tac to/Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (

@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import <Parse/Parse.h>
 
 @implementation MyNavigationController
 
@@ -59,7 +60,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Create the main window
+	[Parse setApplicationId:@"pSAAHkZicEwA6fduTj6ZTUpuW7MoFFcsDVqjYnsp"
+                clientKey:@"PjLxPSzHMDQAhASxYjTrY1b0VHbKQAL8febWlEXh"];
+  PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+  [testObject setObject:@"bar" forKey:@"foo"];
+  [testObject save];
+  
+  // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	
