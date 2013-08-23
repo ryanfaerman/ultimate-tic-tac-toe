@@ -13,7 +13,7 @@ static RWLeaderBoard *sharedInstance = nil;
 
 @implementation RWLeaderBoard
 
-@synthesize engines;
+@synthesize engines, lastScore;
 
 #pragma mark - housekeeping
 
@@ -46,6 +46,7 @@ static RWLeaderBoard *sharedInstance = nil;
 
 - (void) push:(RWScore*)score
 {
+  lastScore = score;
   for ( id engine in [engines allObjects]) {
     [engine push:score];
   }

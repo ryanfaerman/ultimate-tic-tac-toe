@@ -9,6 +9,7 @@
 #import "MenuLayer.h"
 #import "RWGame.h"
 #import "CreditsOverlay.h"
+#import "LeaderBoardLayer.h"
 //#import "HelloWorldLayer.h"
 
 
@@ -16,6 +17,7 @@ CCLabelTTF *resumeLabel;
 CCLabelTTF *newLabel;
 CCLabelTTF *creditsLabel;
 CCLabelTTF *rulesLabel;
+CCLabelTTF *leaderboardsLabel;
 
 @implementation MenuLayer
 
@@ -65,7 +67,10 @@ CCLabelTTF *rulesLabel;
     [rulesLabel setColor:ccc3(200,200,200)];
     rulesLabel.position = ccp( s.width/2, s.height/2-50);
     
-    
+    leaderboardsLabel = [CCLabelTTF labelWithString:@"Leader Boards" fontName:@"Marker Felt" fontSize:26];
+    [self addChild:leaderboardsLabel z:0];
+    [leaderboardsLabel setColor:ccc3(200,200,200)];
+    leaderboardsLabel.position = ccp( s.width/2, s.height/2-100);
     
   }
   
@@ -91,6 +96,9 @@ CCLabelTTF *rulesLabel;
   CGRect resumeRect = [resumeLabel boundingBox];
   CGRect newRect = [newLabel boundingBox];
   CGRect creditsRect = [creditsLabel boundingBox];
+  
+  CGRect leaderboardRect = [leaderboardsLabel boundingBox];
+  
   CGRect pointRect = CGRectMake(location.x, location.y, 1.0f, 1.0f);
   
   if(CGRectIntersectsRect(resumeRect, pointRect) && [[RWGame sharedGame] isPlaying]) {
@@ -114,7 +122,11 @@ CCLabelTTF *rulesLabel;
     [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[CreditsOverlay scene]]];
     return;
   }
-
+  
+  if(CGRectIntersectsRect(leaderboardRect, pointRect)) {
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[LeaderBoardLayer scene]]];
+    return;
+  }
   
   
 }

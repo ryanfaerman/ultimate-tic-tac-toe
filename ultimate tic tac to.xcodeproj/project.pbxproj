@@ -223,6 +223,8 @@
 		758B808217C6DF78009DC68B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808117C6DF78009DC68B /* StoreKit.framework */; };
 		758B808417C6DF7E009DC68B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808317C6DF7E009DC68B /* SystemConfiguration.framework */; };
 		758B808617C6E0B4009DC68B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758B808517C6E0B4009DC68B /* FacebookSDK.framework */; };
+		758B808917C6E578009DC68B /* RWParseLeaderBoardEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B808817C6E578009DC68B /* RWParseLeaderBoardEngine.m */; };
+		758B808C17C7055F009DC68B /* LeaderBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B808B17C7055F009DC68B /* LeaderBoardLayer.m */; };
 		759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789A17BC760C00E6DD93 /* RWPlayTimer.m */; };
 		759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789D17BC789300E6DD93 /* RWGameTimer.m */; };
 		75A7EA8617977BD000154C33 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8517977BD000154C33 /* line.png */; };
@@ -674,6 +676,10 @@
 		758B808117C6DF78009DC68B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		758B808317C6DF7E009DC68B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		758B808517C6E0B4009DC68B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		758B808717C6E578009DC68B /* RWParseLeaderBoardEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWParseLeaderBoardEngine.h; sourceTree = "<group>"; };
+		758B808817C6E578009DC68B /* RWParseLeaderBoardEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWParseLeaderBoardEngine.m; sourceTree = "<group>"; };
+		758B808A17C7055F009DC68B /* LeaderBoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoardLayer.h; sourceTree = "<group>"; };
+		758B808B17C7055F009DC68B /* LeaderBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoardLayer.m; sourceTree = "<group>"; };
 		759C789917BC760C00E6DD93 /* RWPlayTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPlayTimer.h; sourceTree = "<group>"; };
 		759C789A17BC760C00E6DD93 /* RWPlayTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPlayTimer.m; sourceTree = "<group>"; };
 		759C789C17BC789300E6DD93 /* RWGameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameTimer.h; sourceTree = "<group>"; };
@@ -790,6 +796,8 @@
 				7543D9F217C460FE00C4AA1B /* RWLeaderBoard.m */,
 				7543D9F417C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.h */,
 				7543D9F517C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m */,
+				758B808717C6E578009DC68B /* RWParseLeaderBoardEngine.h */,
+				758B808817C6E578009DC68B /* RWParseLeaderBoardEngine.m */,
 			);
 			name = Leaderboards;
 			sourceTree = "<group>";
@@ -857,6 +865,8 @@
 				7571C7BF178E3BD4009F6569 /* GLES-Render.mm */,
 				75D620E317AB476200DA0133 /* GameOverLayer.h */,
 				75D620E417AB476200DA0133 /* GameOverLayer.m */,
+				758B808A17C7055F009DC68B /* LeaderBoardLayer.h */,
+				758B808B17C7055F009DC68B /* LeaderBoardLayer.m */,
 				7543D9E917C451B700C4AA1B /* Protocols */,
 				75BBE28917A9F84100DC792F /* Helpers */,
 				75BBE28817A9F7DB00DC792F /* Models */,
@@ -1750,6 +1760,8 @@
 				7543D9ED17C4523C00C4AA1B /* RWScore.m in Sources */,
 				7543D9F317C460FE00C4AA1B /* RWLeaderBoard.m in Sources */,
 				7543D9F617C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m in Sources */,
+				758B808917C6E578009DC68B /* RWParseLeaderBoardEngine.m in Sources */,
+				758B808C17C7055F009DC68B /* LeaderBoardLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

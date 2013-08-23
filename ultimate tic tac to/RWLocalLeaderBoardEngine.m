@@ -39,7 +39,7 @@
   int nDays = [days intValue];
   int since = today - (nDays * 86400); // not so magic number for seconds in a day
   
-  NSString *conditions = [[NSString alloc] initWithFormat:@"where updated_at >= %d order by updated_at desc limit %d", since, [quantity intValue]];
+  NSString *conditions = [[NSString alloc] initWithFormat:@"where updated_at >= %d order by score asc limit %d", since, [quantity intValue]];
   
   return [self findWithConditions:conditions];
 }

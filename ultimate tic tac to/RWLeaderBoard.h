@@ -12,6 +12,7 @@
 @interface RWLeaderBoard : NSObject
 
 @property (atomic, retain) NSMutableSet *engines;
+@property (atomic, retain) RWScore *lastScore;
 
 + (RWLeaderBoard *)shared;
 

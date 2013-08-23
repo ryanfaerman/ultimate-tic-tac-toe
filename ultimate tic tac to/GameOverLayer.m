@@ -12,6 +12,9 @@
 #import "RWPlayerO.h"
 #import "RWPlayerX.h"
 #import "RWPlayTimer.h"
+#import "RWLeaderBoard.h"
+
+CCLabelTTF *shareButtonLabel;
 
 @implementation GameOverLayer
 
@@ -65,6 +68,11 @@
     [timeWinner setColor:ccc3(190,190,190)];
     timeWinner.position = ccp( s.width/2, s.height/2-35);
     
+    shareButtonLabel= [CCLabelTTF labelWithString:@"Tweet this epic game!" fontName:@"Marker Felt" fontSize:18];
+    [self addChild:shareButtonLabel z:0];
+    [shareButtonLabel setColor:ccc3(190,190,190)];
+    shareButtonLabel.position = ccp( s.width/2, s.height/2-65);
+    
     NSLog(@"fastest player: %@", [[RWGameTimer sharedTimers] winner]);
     
   }
@@ -84,6 +92,17 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+  CGPoint location = [self convertTouchToNodeSpace: touch];
+  CGRect pointRect = CGRectMake(location.x, location.y, 1.0f, 1.0f);
+  
+  
+  if(CGRectIntersectsRect([shareButtonLabel boundingBox], pointRect)) {
+    NSString *urlString = [[[NSString alloc] initWithFormat:@"https://twitter.com/intent/tweet?text=%@ just beat %@ with a score of %@ in Ultimate Tic Tac Toe! http://www.fullsail.edu", [[[RWGameTimer sharedTimers] winner] description], [[[RWGameTimer sharedTimers] loser] description], [RWLeaderBoard shared].lastScore.value] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    [[UIApplication sharedApplication] openURL: url];
+    return;
+  }
   [[RWGame sharedGame] reset];
   [[CCDirector sharedDirector] popScene];
 }

@@ -34,6 +34,7 @@
 
 #import "RWLeaderBoard.h"
 #import "RWLocalLeaderBoardEngine.h"
+#import "RWParseLeaderBoardEngine.h"
 
 enum {
 	kTagParentNode = 1,
@@ -156,16 +157,6 @@ BOOL paused = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameReset:) name:@"RWGameReset" object:nil];
     
     Game = [RWGame sharedGame];
-    
-    [[RWLeaderBoard shared] enroll:[RWLocalLeaderBoardEngine class]];
-    RWScore *score = [[RWScore alloc] init];
-    score.value = [[NSNumber alloc] initWithInt:45];
-    score.player = [[RWPlayerX alloc] init];
-    [[RWLeaderBoard shared] push:score];
-    
-    NSArray *tops = [[RWLeaderBoard shared] top:[[NSNumber alloc] initWithInt: 10] forlast:[[NSNumber alloc] initWithInt: 7] in:[RWLocalLeaderBoardEngine class]];
-    NSLog(@"%@", tops);
-    
         
     [self schedule: @selector(ticktock:) interval:1];
 		[self scheduleUpdate];
@@ -178,7 +169,6 @@ BOOL paused = NO;
   [[RWGameTimer sharedTimers] tick];
   RWPlayTimer *xTime = [[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWPlayerX class]];
   RWPlayTimer *oTime = [[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWPlayerO class]];
-  NSLog(@"game duration: %@",[[[RWGameTimer sharedTimers] playTimers] objectForKey:[RWGame class]]);
   
   [xTimerLabel setString:[xTime description]];
   [oTimerLabel setString:[oTime description]];
@@ -244,8 +234,16 @@ BOOL paused = NO;
 
 - (void) gameWon:(NSNotification *)notification
 {
-  [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
+  RWPlayTimer *playTimer = [[[RWGameTimer sharedTimers] playTimers] objectForKey:[[[RWGameTimer sharedTimers] winner] class]];
+  
+  RWScore *score = [[RWScore alloc] init];
+  score.value = [[NSNumber alloc] initWithInt: playTimer.tickCount];
+  score.player = [[RWGameTimer sharedTimers] winner];
+  [[RWLeaderBoard shared] push:score];
+  
   NSLog(@"GAME OVER. %@ won.", [[notification object] winner]);
+  [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
+  
 }
 
 
