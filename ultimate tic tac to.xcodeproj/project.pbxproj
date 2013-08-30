@@ -227,6 +227,9 @@
 		758B808C17C7055F009DC68B /* LeaderBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B808B17C7055F009DC68B /* LeaderBoardLayer.m */; };
 		759C789B17BC760C00E6DD93 /* RWPlayTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789A17BC760C00E6DD93 /* RWPlayTimer.m */; };
 		759C789E17BC789300E6DD93 /* RWGameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 759C789D17BC789300E6DD93 /* RWGameTimer.m */; };
+		75A41BD117CED7C800256191 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A41BD017CED7C800256191 /* CoreData.framework */; };
+		75A41BD917D02FCA00256191 /* RWGameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A41BD817D02FCA00256191 /* RWGameStat.m */; };
+		75A41BDF17D0396200256191 /* RWAwards.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A41BDE17D0396200256191 /* RWAwards.m */; };
 		75A7EA8617977BD000154C33 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8517977BD000154C33 /* line.png */; };
 		75A7EA8817977F9000154C33 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A7EA8717977F9000154C33 /* board.png */; };
 		75B23FFB17A8996A005D8823 /* RWPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B23FFA17A8996A005D8823 /* RWPosition.m */; };
@@ -684,6 +687,18 @@
 		759C789A17BC760C00E6DD93 /* RWPlayTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPlayTimer.m; sourceTree = "<group>"; };
 		759C789C17BC789300E6DD93 /* RWGameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameTimer.h; sourceTree = "<group>"; };
 		759C789D17BC789300E6DD93 /* RWGameTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWGameTimer.m; sourceTree = "<group>"; };
+		75A41BC917CED75F00256191 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		75A41BCA17CED75F00256191 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		75A41BCB17CED75F00256191 /* NSManagedObject+ActiveRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ActiveRecord.h"; sourceTree = "<group>"; };
+		75A41BCC17CED75F00256191 /* NSManagedObject+ActiveRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ActiveRecord.m"; sourceTree = "<group>"; };
+		75A41BCD17CED75F00256191 /* NSManagedObject+Mappings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mappings.h"; sourceTree = "<group>"; };
+		75A41BCE17CED75F00256191 /* NSManagedObject+Mappings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mappings.m"; sourceTree = "<group>"; };
+		75A41BCF17CED75F00256191 /* ObjectiveRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveRecord.h; sourceTree = "<group>"; };
+		75A41BD017CED7C800256191 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		75A41BD717D02FCA00256191 /* RWGameStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameStat.h; sourceTree = "<group>"; };
+		75A41BD817D02FCA00256191 /* RWGameStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWGameStat.m; sourceTree = "<group>"; };
+		75A41BDD17D0396200256191 /* RWAwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWAwards.h; sourceTree = "<group>"; };
+		75A41BDE17D0396200256191 /* RWAwards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWAwards.m; sourceTree = "<group>"; };
 		75A7EA8517977BD000154C33 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		75A7EA8717977F9000154C33 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		75B23FF917A8996A005D8823 /* RWPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPosition.h; sourceTree = "<group>"; };
@@ -725,6 +740,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A41BD117CED7C800256191 /* CoreData.framework in Frameworks */,
 				758B808417C6DF7E009DC68B /* SystemConfiguration.framework in Frameworks */,
 				758B808217C6DF78009DC68B /* StoreKit.framework in Frameworks */,
 				758B808017C6DF73009DC68B /* Security.framework in Frameworks */,
@@ -822,6 +838,7 @@
 		7571C57C178E3BD0009F6569 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75A41BD017CED7C800256191 /* CoreData.framework */,
 				758B808517C6E0B4009DC68B /* FacebookSDK.framework */,
 				758B808317C6DF7E009DC68B /* SystemConfiguration.framework */,
 				758B808117C6DF78009DC68B /* StoreKit.framework */,
@@ -932,6 +949,7 @@
 		7571C5AA178E3BD0009F6569 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				75A41BC817CED74F00256191 /* ObjectiveRecord */,
 				7571C6D5178E3BD2009F6569 /* LICENSE_cocos2d.txt */,
 				7571C6EB178E3BD2009F6569 /* LICENSE_CocosDenshion.txt */,
 				7571C71D178E3BD2009F6569 /* LICENSE_Kazmath.txt */,
@@ -1449,9 +1467,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		75A41BBE17CED4F200256191 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				75A41BD717D02FCA00256191 /* RWGameStat.h */,
+				75A41BD817D02FCA00256191 /* RWGameStat.m */,
+				75A41BDD17D0396200256191 /* RWAwards.h */,
+				75A41BDE17D0396200256191 /* RWAwards.m */,
+			);
+			name = Achievements;
+			sourceTree = "<group>";
+		};
+		75A41BC817CED74F00256191 /* ObjectiveRecord */ = {
+			isa = PBXGroup;
+			children = (
+				75A41BC917CED75F00256191 /* CoreDataManager.h */,
+				75A41BCA17CED75F00256191 /* CoreDataManager.m */,
+				75A41BCB17CED75F00256191 /* NSManagedObject+ActiveRecord.h */,
+				75A41BCC17CED75F00256191 /* NSManagedObject+ActiveRecord.m */,
+				75A41BCD17CED75F00256191 /* NSManagedObject+Mappings.h */,
+				75A41BCE17CED75F00256191 /* NSManagedObject+Mappings.m */,
+				75A41BCF17CED75F00256191 /* ObjectiveRecord.h */,
+			);
+			name = ObjectiveRecord;
+			sourceTree = "<group>";
+		};
 		75BBE28817A9F7DB00DC792F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				75A41BBE17CED4F200256191 /* Achievements */,
 				7543D9F017C458DA00C4AA1B /* Leaderboards */,
 				7543D9EF17C458BD00C4AA1B /* Players & Positions */,
 				75B2400817A8BF2A005D8823 /* RWGame.h */,
@@ -1762,6 +1806,8 @@
 				7543D9F617C5A00D00C4AA1B /* RWLocalLeaderBoardEngine.m in Sources */,
 				758B808917C6E578009DC68B /* RWParseLeaderBoardEngine.m in Sources */,
 				758B808C17C7055F009DC68B /* LeaderBoardLayer.m in Sources */,
+				75A41BD917D02FCA00256191 /* RWGameStat.m in Sources */,
+				75A41BDF17D0396200256191 /* RWAwards.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

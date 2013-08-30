@@ -12,11 +12,13 @@
 #import "RWStalemate.h"
 #import "RWEmpty.h"
 
+#import "RWGameStat.h"
+
 static RWGame *sharedInstance = nil;
 
 @implementation RWGame
 
-@synthesize nextBoard, currentPlayer, isPlaying;
+@synthesize nextBoard, currentPlayer, isPlaying, gameStats;
 
 + (RWGame *)sharedGame
 {
@@ -27,7 +29,6 @@ static RWGame *sharedInstance = nil;
   
   return sharedInstance;
 }
-
 
 - (RWBoard *) blank
 {
@@ -40,6 +41,7 @@ static RWGame *sharedInstance = nil;
   nextBoard = NULL;
   isPlaying = NO;
   currentPlayer = [RWPlayerX class];
+  gameStats = [[RWGameStat alloc] init];
   [super reset];
 }
 
@@ -93,6 +95,7 @@ static RWGame *sharedInstance = nil;
 
 - (void) notify
 {
+  [gameStats save];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"RWGameWon" object:self];
 }
 

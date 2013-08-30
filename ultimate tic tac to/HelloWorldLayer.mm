@@ -61,7 +61,6 @@ CCLabelTTF *oTimerLabel;
 
 RWGame *Game;
 
-
 BOOL game_over = NO;
 BOOL paused = NO;
 
@@ -150,8 +149,6 @@ BOOL paused = NO;
     oTimerLabel.position = ccp( [PositionHelper playerOSource].x, [PositionHelper playerOSource].y - 25);
     
     
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWon:) name:@"RWBoardWon" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameWon:) name:@"RWGameWon" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameReset:) name:@"RWGameReset" object:nil];
@@ -201,6 +198,7 @@ BOOL paused = NO;
   
   [xTimerLabel setString:@"00:00"];
   [oTimerLabel setString:@"00:00"];
+  
 }
 
 - (void) boardWon:(NSNotification *)notification
@@ -227,8 +225,6 @@ BOOL paused = NO;
     NSLog(@"stalemate... poor baby");
   }
   
-  
-  
   NSLog(@"board %d was won!", winnerBoard);
 }
 
@@ -240,6 +236,8 @@ BOOL paused = NO;
   score.value = [[NSNumber alloc] initWithInt: playTimer.tickCount];
   score.player = [[RWGameTimer sharedTimers] winner];
   [[RWLeaderBoard shared] push:score];
+  
+
   
   NSLog(@"GAME OVER. %@ won.", [[notification object] winner]);
   [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
@@ -271,7 +269,7 @@ BOOL paused = NO;
   }
   
   if(!CGRectIntersectsRect(boardRect, pointRect)) {
-//    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
     return;
   }
   

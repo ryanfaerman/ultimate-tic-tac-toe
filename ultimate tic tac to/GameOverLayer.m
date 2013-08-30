@@ -14,6 +14,8 @@
 #import "RWPlayTimer.h"
 #import "RWLeaderBoard.h"
 
+#import "RWAwards.h"
+
 CCLabelTTF *shareButtonLabel;
 
 @implementation GameOverLayer
@@ -72,6 +74,37 @@ CCLabelTTF *shareButtonLabel;
     [self addChild:shareButtonLabel z:0];
     [shareButtonLabel setColor:ccc3(190,190,190)];
     shareButtonLabel.position = ccp( s.width/2, s.height/2-65);
+    
+    
+    
+    
+    NSString *rewardString = @"";
+    
+    if ([RWAwards playedOneGame]) {
+      rewardString = @"Solo Game Award!";
+    }
+    
+    else if ([RWAwards playedTwoGames]) {
+      rewardString = @"Deuce Award!";
+    }
+    
+    else if ([RWAwards playedThreeGames]) {
+      rewardString = @"Hat Trick Award!";
+    }
+    
+    else if ([RWAwards withinTwoMinutes]) {
+      rewardString = @"Greased Lightning Award!";
+    }
+    
+    else if ([RWAwards slowerThanFiveMinutes]) {
+      rewardString = @"6-toed Sloth Award!";
+    }
+    
+    
+    CCLabelTTF *rewardLabel = [CCLabelTTF labelWithString:rewardString fontName:@"Marker Felt" fontSize:52];
+		[self addChild:rewardLabel z:0];
+		[rewardLabel setColor:ccc3(200,200,200)];
+		rewardLabel.position = ccp( s.width/2, s.height/2+225);
     
     NSLog(@"fastest player: %@", [[RWGameTimer sharedTimers] winner]);
     
