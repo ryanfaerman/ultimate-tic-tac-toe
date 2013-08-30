@@ -269,7 +269,7 @@ BOOL paused = NO;
   }
   
   if(!CGRectIntersectsRect(boardRect, pointRect)) {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
+//    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:0.3 scene:[GameOverLayer scene]]];
     return;
   }
   
